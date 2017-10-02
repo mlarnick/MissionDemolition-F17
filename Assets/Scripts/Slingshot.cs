@@ -10,7 +10,6 @@ public class Slingshot : MonoBehaviour {
     public GameObject prefabProjectile;
     public float velocityMult = 4f;
     public bool ____________;
-    public float velocityMult = 4f;
 
     // fields set dynamically
     public Vector3 launchPos;
@@ -23,10 +22,7 @@ public class Slingshot : MonoBehaviour {
 
         // Set the Slingshot singleton S
         S = this;
-        Transform launchPointTrans = transform.Find("LaunchPoint");
-
         Transform launchPointTrans = transform.FindChild("LaunchPoint");
-
         launchPoint = launchPointTrans.gameObject;
         launchPoint.SetActive(false);
         launchPos = launchPointTrans.position;
