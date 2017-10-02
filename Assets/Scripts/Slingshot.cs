@@ -10,6 +10,7 @@ public class Slingshot : MonoBehaviour {
     public GameObject prefabProjectile;
     public float velocityMult = 4f;
     public bool ____________;
+    public float velocityMult = 4f;
 
     // fields set dynamically
     public Vector3 launchPos;
@@ -19,9 +20,13 @@ public class Slingshot : MonoBehaviour {
 
     void Awake()
     {
+
         // Set the Slingshot singleton S
         S = this;
         Transform launchPointTrans = transform.Find("LaunchPoint");
+
+        Transform launchPointTrans = transform.FindChild("LaunchPoint");
+
         launchPoint = launchPointTrans.gameObject;
         launchPoint.SetActive(false);
         launchPos = launchPointTrans.position;
@@ -29,7 +34,9 @@ public class Slingshot : MonoBehaviour {
 
     void Update()
     {
+
         // If slingshot is not in aiming mode, do not run this code
+        // If slingshot is not in aimingMode, don't rune this code
         if (!aimingMode) return;
 
         // Get the current mouse position in 2D screen coordinates
@@ -37,6 +44,7 @@ public class Slingshot : MonoBehaviour {
 
         // Convert the mouse position to 3D world coordinates
         mousePos2D.z = -Camera.main.transform.position.z;
+        mousePos2D.z = -Camera.main.transform.position.x;
         Vector3 mousePos3D = Camera.main.ScreenToWorldPoint(mousePos2D);
 
         // Find the delta from the launchPos to the mousePos3D
@@ -57,13 +65,13 @@ public class Slingshot : MonoBehaviour {
         if (Input.GetMouseButtonUp(0))
         {
             // The mouse button has been released
+            // The mouse has been released
             aimingMode = false;
             projectile.GetComponent<Rigidbody>().isKinematic = false;
             projectile.GetComponent<Rigidbody>().velocity = -mouseDelta * velocityMult;
             FollowCam.S.poi = projectile;
             projectile = null;
         }
-
     }
 
     void OnMouseEnter()
