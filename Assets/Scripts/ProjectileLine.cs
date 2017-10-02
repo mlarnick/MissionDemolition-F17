@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class ProjectileLine : MonoBehaviour
 {
-
     static public ProjectileLine S; // Singleton
 
-    // Fields set in hte Unity Inspector pane
+    // Fields set in the Unity Inspector pane
     public float minDist = .1f;
     public bool __________________;
 
-    // fields set dynamically
+    // Fields set dynamically
     public LineRenderer line;
     private GameObject _poi;
     public List<Vector3> points;

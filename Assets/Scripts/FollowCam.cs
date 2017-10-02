@@ -31,7 +31,7 @@ public class FollowCam : MonoBehaviour {
 	void FixedUpdate () {
         Vector3 destination;
         
-        // I fthere is no poi, reutnr to P:[0, 0, 0]
+        // If there is no poi, reutnr to P:[0, 0, 0]
         if (poi == null)
         {
             destination = Vector3.zero;
